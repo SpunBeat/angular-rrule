@@ -1,0 +1,28 @@
+<div [formGroup]="rruleForm" fxLayout="column">
+
+  <mat-form-field fxFlex="100">
+    <mat-label>Frequency</mat-label>
+    <mat-select formControlName="freq" [compareWith]="compare">
+      <mat-option *ngFor="let item of frequencyList" [value]="item.value">{{ item.title }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div fxLayout="column" fxFlex="100" *ngIf="rruleForm.get('freq').value != null ? true : false">
+    <mat-label>Interval by {{frequencyList[rruleForm.get('freq').value].plural}}</mat-label>
+    <mat-slider thumbLabel="true" formControlName="interval"></mat-slider>
+  </div>
+
+  <div fxLayout="column" fxFlex="100">
+    <mat-label>Count</mat-label>
+    <mat-slider thumbLabel="true" formControlName="count"></mat-slider>
+  </div>
+
+
+  <mat-form-field fxFlex="100">
+    <mat-label>Week Days</mat-label>
+    <mat-select multiple formControlName="byweekday" [compareWith]="compare">
+      <mat-option *ngFor="let item of weekdayList" [value]="item.value">{{ item.title }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
